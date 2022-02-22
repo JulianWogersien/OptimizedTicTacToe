@@ -4,8 +4,8 @@
 TODO*.*
 *.pptx
 *.pdf
-*.clan-tidy
 *.clang-format
+*.clang-tidy
 *.editorconfig
 
 ################################
