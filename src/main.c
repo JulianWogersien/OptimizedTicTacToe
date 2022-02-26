@@ -25,17 +25,11 @@ int charToInt(char c);
 char getBit(unsigned int* x, int index);
 char getPlayerChar(unsigned int* gameData, int fieldIndex);
 void printGame(unsigned int* gameData);
-char getMove();
+char getMove(unsigned int* gameData);
 
 int main(){
 
-    if(0){
-        printf("0\n");
-    }
-    if()
-        printf("1\n");
-
-    //gameLoop();
+    gameLoop();
 
     return EXIT_SUCCESS;
 }
@@ -47,23 +41,28 @@ int gameLoop(){
         printGame(&gameData);
         resetBit(&gameData, 18);
         printf("player 1, input your move (numbers 0 - 8)\n");
-        putBit(&gameData, charToInt(getMove()));
+        putBit(&gameData, charToInt(getMove(&gameData)));
 
         printGame(&gameData);
         putBit(&gameData, 18);
         printf("player 2, input your move (numbers 0 - 8)\n");
-        putBit(&gameData, charToInt(getMove()));
+        putBit(&gameData, charToInt(getMove(&gameData)) + 9);
     }
 
     return 0;
 }
 
-char getMove(){
+char getMove(unsigned int* gameData){
     char move;
     bool hasMoved = false;
     while (!hasMoved) {
         move = (char)getchar_unlocked();
-        if(isdigit(move)){
+        if(isdigit(move) && move <= 8){
+            if (getBit(gameData, 18) == '0') {
+                hasMoved = getBit(gameData, move)? true : false;
+            }else {
+                hasMoved = getBit(gameData, move + 9)? true : false;
+            }
             hasMoved = true;
         }else {
             printf("invalid move, retry\n");
