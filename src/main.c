@@ -15,7 +15,7 @@
 //error codes
 #define BIT_LENGTH_EXCEEDED 6
 
-int gameLoop();
+void gameLoop();
 void printBits(unsigned int x);
 void putBit(unsigned int* x, int index);
 void resetBit(unsigned int* x, int index);
@@ -33,7 +33,7 @@ int main(){
     return EXIT_SUCCESS;
 }
 
-int gameLoop(){
+void gameLoop(){
     unsigned int gameData = 0;
     putBit(&gameData, 19);
     
@@ -57,8 +57,6 @@ int gameLoop(){
             }
         }
     }
-
-    return 0;
 }
 
 char getMove(unsigned int* gameData){
