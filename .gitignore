@@ -4,9 +4,6 @@
 TODO*.*
 *.pptx
 *.pdf
-*.clang-format
-*.clang-tidy
-*.editorconfig
 
 ################################
 ########### FOLDERS ############

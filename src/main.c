@@ -20,7 +20,7 @@ void printBits(unsigned int x);
 void putBit(unsigned int* x, int index);
 void resetBit(unsigned int* x, int index);
 bool hasGameFinished(unsigned int* gameData);
-int charToInt(char c);
+inline int charToInt(char c);
 char getBit(unsigned int* x, int index);
 char getPlayerChar(unsigned int* gameData, int fieldIndex);
 void printGame(unsigned int* gameData);
@@ -94,32 +94,30 @@ char getPlayerChar(unsigned int* gameData, int fieldIndex){
     }
 }
 
-int charToInt(char c){
+inline int charToInt(char c){
     return c - '0';
 }
 
 bool hasGameFinished(unsigned int* gameData){
-    bool hasGameFinished = false;
-
     if (getBit(gameData, 0) == '1' && getBit(gameData, 1) == '1' && getBit(gameData, 2) == '1') {
-        hasGameFinished = true;
+        return true;
     }else if (getBit(gameData, 3) == '1' && getBit(gameData, 4) == '1' && getBit(gameData, 5) == '1') {
-        hasGameFinished = true;
+        return true;
     }else if (getBit(gameData, 6) == '1' && getBit(gameData, 7) == '1' && getBit(gameData, 8) == '1') {
-        hasGameFinished = true;
+        return true;
     }else if (getBit(gameData, 0) == '1' && getBit(gameData, 3) == '1' && getBit(gameData, 6) == '1') {
-        hasGameFinished = true;
+        return true;
     }else if (getBit(gameData, 1) == '1' && getBit(gameData, 4) == '1' && getBit(gameData, 7) == '1') {
-        hasGameFinished = true;
+        return true;
     }else if (getBit(gameData, 2) == '1' && getBit(gameData, 5) == '1' && getBit(gameData, 8) == '1') {
-        hasGameFinished = true;
+        return true;
     }else if (getBit(gameData, 0) == '1' && getBit(gameData, 4) == '1' && getBit(gameData, 8) == '1') {
-        hasGameFinished = true;
+        return true;
     }else if (getBit(gameData, 2) == '1' && getBit(gameData, 4) == '1' && getBit(gameData, 6) == '1') {
-        hasGameFinished = true;
+        return true;
     }
 
-    return hasGameFinished;
+    return false;
 }
 
 char getBit(unsigned int* x, int index){
@@ -140,6 +138,7 @@ void putBit(unsigned int* x, int index){
     *x |= 1 << index;
 }
 
+//used for debugging
 void printBits(unsigned int x)
 {
     int i=0;
